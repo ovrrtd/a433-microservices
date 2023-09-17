@@ -1,0 +1,35 @@
+# version for docker compose file used
+version: "3.7"
+
+# list of service launched
+services:
+  # name for the node server service
+  item-app:
+    # target image used for this service
+    image: ghcr.io/ovrrtd/item-app:v1
+    # restart policy to always restarting everytime service down
+    restart: always
+    # port mapping for host:container
+    ports:
+      - 80:8080
+    # 
+    depends_on:
+      - item-db
+  # name for the mongo server service
+  item-db:
+    # target image used for this service
+    image: mongo:3
+    # restart policy to always restarting everytime service down
+    restart: always
+    # port mapping for host:container
+    ports:
+      - 27017:27017
+    # mapping data store from container to house
+    volumes:
+      - app-db:/data/db
+      
+# Docker volumes to create volumes location persisted in host
+volumes:
+  app-db:
+
+

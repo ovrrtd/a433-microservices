@@ -1,0 +1,1 @@
+ghcr.io/ovrrtd/item-app:v1
